@@ -1,13 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <title>Lab 01</title>
+    <title>Лабораторная работа 0</title>
     <meta charset="UTF-8" />
-
-    <script src="src/index.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/styles.css" />
+    <script src="src/index.js" defer></script>
 </head>
 
 <body>
+    <main class="app">
+        <section class="hero">
+            <div class="hero__content">
+                <p class="hero__label">Вариант 5</p>
+                <h1>Численное интегрирование</h1>
+                <p class="hero__text">
+                    Вычисление интеграла функции <span>F(x) = x * cos(x)</span> методом левых прямоугольников.
+                </p>
+            </div>
+            <img class="hero__image" src="assets/capybara-study.png" alt="Капибара изучает математику за ноутбуком" />
+        </section>
 
+        <section class="workspace" aria-label="Калькулятор интеграла">
+            <form class="calculator" id="integral-form">
+                <div class="calculator__header">
+                    <p>Интервал интегрирования</p>
+                    <strong>Left Riemann Sum</strong>
+                </div>
+
+                <label class="field">
+                    <span>Начало интервала</span>
+                    <input id="start" type="number" step="any" value="0" required />
+                </label>
+
+                <label class="field">
+                    <span>Конец интервала</span>
+                    <input id="end" type="number" step="any" value="3.14" required />
+                </label>
+
+                <label class="field">
+                    <span>Количество точек</span>
+                    <input id="points" type="number" min="1" step="1" value="10000" required />
+                </label>
+
+                <button type="submit">Рассчитать</button>
+            </form>
+
+            <div class="result" aria-live="polite">
+                <p class="result__label">Результат</p>
+                <output id="result">Введите границы интервала и нажмите кнопку расчета.</output>
+            </div>
+        </section>
+    </main>
 </body>
 </html>

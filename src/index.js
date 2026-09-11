@@ -14,13 +14,23 @@ function targetFunction(x) {
   return x * Math.cos(x)
 }
 
-const start = Number(prompt("Enter the start of integration interval:"))
-const end = Number(prompt("Enter the end of integration interval:"))
-const points = 10000
+const form = document.querySelector("#integral-form")
+const result = document.querySelector("#result")
 
-if (Number.isNaN(start) || Number.isNaN(end)) {
-  alert("Invalid interval")
-} else {
-  const result = leftRiemannSum(targetFunction, start, end, points)
-  alert(`Integral result: ${result}`)
-}
+form.addEventListener("submit", (event) => {
+  event.preventDefault()
+
+  const start = Number(document.querySelector("#start").value)
+  const end = Number(document.querySelector("#end").value)
+  const points = Number(document.querySelector("#points").value)
+
+  if (Number.isNaN(start) || Number.isNaN(end) || !Number.isInteger(points) || points <= 0) {
+    result.textContent = "Проверьте значения: границы должны быть числами, а количество точек — целым числом больше нуля."
+    result.classList.add("result__value--error")
+    return
+  }
+
+  const integral = leftRiemannSum(targetFunction, start, end, points)
+  result.textContent = `Приближенное значение интеграла: ${integral.toFixed(8)}`
+  result.classList.remove("result__value--error")
+})
